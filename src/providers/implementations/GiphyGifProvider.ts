@@ -36,8 +36,11 @@ class GiphyGifProvider implements IGifProvider {
         url: gif.id ? `https://i.giphy.com/media/${gif.id}/giphy.webp` : null,
       };
     } catch (err) {
-      console.log(err.message);
-      throw new AppError('"GIPHY" API is unavailable.', 503);
+      if (err.response.status === 429)
+        console.log('GIPHY API rate limit exceeded');
+      else console.log(err.message);
+
+      throw new AppError('GIPHY API is unavailable', 503);
     }
   }
 }

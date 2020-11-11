@@ -36,7 +36,7 @@ class RecipePuppyRecipeProvider implements IRecipeProvider {
       }));
     } catch (err) {
       console.log(err.message);
-      throw new AppError('"Recipe Puppy" API is unavailable.', 503);
+      throw new AppError('Recipe Puppy API is unavailable', 503);
     }
   }
 }
