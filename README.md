@@ -7,7 +7,7 @@ Atualmente são utilizados os dados das APIs públicas [Recipe Puppy][ref1] e [G
 [ref1]: <http://www.recipepuppy.com/about/api/>
 [ref2]: <https://developers.giphy.com/docs/>
 
-A estrutura deste projeto utiliza algúns princípios SOLID, facilitando a futura adição e substituição de funcionalidades.
+A estrutura deste projeto utiliza algúns princípios SOLID, facilitando a futura adição e substituição de funcionalidades e integrações.
 
 ## Stack utilizada
 
@@ -82,10 +82,15 @@ Em caso de erro, será retornada uma resposta com o seguinte formato:
 ```
 
 ---
+---
 
-## Variáveis de ambiente
+## Executando a aplicação
 
-Antes de executar o projeto tanto no *Docker*, como em *Ambiente de Desenvolvimento* é necessário configurar as variáveis de ambiente copiando o arquivo **.env.example** e renomeando para **.env** .
+É possível executar a aplicação tanto localmente como em um Docker Container. Abaixo estão as instruções para executar ambos os modos, porem antes é necessário configurar as variáveis de ambiente.
+
+### Variáveis de ambiente
+
+Antes de executar o projeto é necessário configurar as variáveis de ambiente copiando o arquivo **.env.example** e renomeando para **.env** .
 
 É possível configurar as seguintes variáveis:
 
