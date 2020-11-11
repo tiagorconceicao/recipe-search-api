@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import { searchRecipesController } from './useCases/SearchRecipes';
 
 const routes = Router();
 
-routes.get('/', (request, response) => {
-  response.json({ server_running: true });
+routes.get('/recipes', (request, response) => {
+  return searchRecipesController.handle(request, response);
 });
 
 export default routes;
