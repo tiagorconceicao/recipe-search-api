@@ -9,7 +9,7 @@ Atualmente são utilizados os dados das APIs públicas [Recipe Puppy][ref1] e [G
 
 A estrutura deste projeto utiliza algúns princípios SOLID, facilitando a futura adição e substituição de funcionalidades e integrações.
 
-## Stack utilizada
+## Tecnologias utilizadas
 
 - Typescript
 - Node.js
@@ -77,46 +77,55 @@ Em caso de erro, será retornada uma resposta com o seguinte formato:
 ``` json
 {
   "status": "error",
-  "message": "Invalid search parameter"
+  "message": "string"
 }
 ```
 
 ---
 ---
 
-## Executando a aplicação
+## Instalação
 
-É possível executar a aplicação tanto localmente como em um Docker Container. Abaixo estão as instruções para executar ambos os modos, porem antes é necessário configurar as variáveis de ambiente.
+Antes de realizar a instalação será necessário clonar utilizando o comando:
+
+```sh
+git clone https://github.com/tiagorconceicao/recipe-search-api
+```
 
 ### Variáveis de ambiente
 
-Antes de executar o projeto é necessário configurar as variáveis de ambiente copiando o arquivo **.env.example** e renomeando para **.env** .
+As variáveis de ambiente já estão pré-configuradas com valores padrão, porém é recomendado que a chave da API do GIPHY (GIPHY_API_KEY) seja alterada para evitar possíveis erros por limite de consultas excedido.
 
 É possível configurar as seguintes variáveis:
 
-- **GIPHY_API_KEY**: determina a chave da API do GIPHY. Caso não seja informada a API utilizará uma chave pública. Não é recomendado o uso da chave pública, já que frequentemente as consultas retornarão `HTTP STATUS 429`, indicando que o limite de consultas foi excedido.
+- **GIPHY_API_KEY**: determina a chave da API do GIPHY. Caso não seja informada uma nova chave a aplicação utilizará uma chave pública. **Não é recomendado o uso da chave pública**, já que frequentemente as consultas retornarão `HTTP STATUS 429`, indicando que o limite de consultas foi excedido.
 
-- **DOCKER_PORT**: determina a porta do container que ficará exposta (padrão = 80)
+- **DOCKER_PORT**: determina a porta do container que ficará exposta [padrão = 80]
 
-- **SERVER_PORT**: determina a porta utilizada pelo servidor dentro do container ou em ambiente de desenvolvimento (padrão = 3333)
+- **SERVER_PORT**: determina a porta utilizada pelo servidor dentro do container ou em ambiente de desenvolvimento [padrão = 3333]
 
 ---
 
-## Docker Container
+## Executando a aplicação
+
+É possível executar a aplicação tanto localmente como em um Docker Container. Abaixo estão as instruções para executar ambos os modos.
+
+### Docker Container
 
 Para executar a aplicação dentro de um Docker Container basta ir na pasta raiz do repositório e digitar o comando:
 
 ```sh
 docker-compose up
+
+# utilizando a flag --build é possível forçar o docker a reconstruir o container caso sejam feitas alterações na aplicação
+docker-compose up --build
 ```
 
 A porta do container será a indicada no **DOCKER_PORT** do arquivo **.env** .
 
----
+### Ambiente de desenvolvimento
 
-## Ambiente de desenvolvimento
-
-Para executar a aplicação em ambiente de desenvolvimento será necessário instalar as dependências usando o comando na raiz do repositório:
+Para executar a aplicação em ambiente de desenvolvimento será necessário instalar as dependências localmente usando o comando na pasta do repositório:
 
 ```sh
 yarn
@@ -130,7 +139,9 @@ yarn dev:server
 
 A porta do servidor será a indicada no **SERVER_PORT** do arquivo **.env** .
 
-### Testes
+---
+
+## Testes
 
 É possível executar os testes com o comando:
 
@@ -138,4 +149,4 @@ A porta do servidor será a indicada no **SERVER_PORT** do arquivo **.env** .
 yarn test
 ```
 
-*Atenção: os testes de integração podem falhar caso as API externas não estejam disponíveis ou excedam o limite de requisições.*
+*Atenção: os testes de integração podem falhar caso as API externas não estejam disponíveis ou excedam o limite de requisições da chave (GIPHY_API_KEY)*
