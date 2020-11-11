@@ -33,7 +33,9 @@ class GiphyGifProvider implements IGifProvider {
       const [gif] = data.data;
 
       return {
-        url: gif.id ? `https://i.giphy.com/media/${gif.id}/giphy.webp` : null,
+        url: gif.id
+          ? `https://media.giphy.com/media/${gif.id}/giphy.gif`
+          : null,
       };
     } catch (err) {
       if (err.response.status === 429)
