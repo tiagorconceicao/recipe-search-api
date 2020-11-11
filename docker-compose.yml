@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  devmuch-challenge-api:
+    build: .
+    container_name: devmuch-challenge-api
+    ports:
+      - "${DOCKER_PORT}:3333"
