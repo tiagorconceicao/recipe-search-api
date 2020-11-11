@@ -13,6 +13,7 @@ interface GiphyResponse {
 class GiphyGifProvider implements IGifProvider {
   private api: AxiosInstance;
 
+  // public api key
   private apiKey = 'dc6zaTOxFJmzC';
 
   constructor() {
