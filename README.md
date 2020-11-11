@@ -7,6 +7,21 @@ Atualmente são utilizados os dados das APIs públicas [Recipe Puppy][ref1] e [G
 [ref1]: <http://www.recipepuppy.com/about/api/>
 [ref2]: <https://developers.giphy.com/docs/>
 
+A estrutura deste projeto utiliza algúns princípios SOLID, facilitando a futura adição e substituição de funcionalidades.
+
+## Stack utilizada
+
+- Typescript
+- Node.js
+- Docker
+
+## Requisitos
+
+- Node.js
+- Yarn
+- Docker
+- Docker Compose
+
 ## Endpoint
 
 A API possui apenas um endpoint, onde devem ser informados os parâmetros da busca (ingredientes) e deve seguir o formato:
@@ -67,10 +82,6 @@ Em caso de erro, será retornada uma resposta com o seguinte formato:
 ```
 
 ---
-
-## Tecnologias
-
-## Requisitos
 
 ## Variáveis de ambiente
 
