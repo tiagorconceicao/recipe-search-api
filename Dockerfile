@@ -14,6 +14,6 @@ COPY --chown=node:node . .
 
 RUN yarn build
 
-EXPOSE 3333
+EXPOSE ${SERVER_PORT}
 
 CMD ["yarn","start"]
