@@ -86,7 +86,7 @@ Em caso de erro, será retornada uma resposta com o seguinte formato:
 
 ## Instalação
 
-Antes de realizar a instalação será necessário clonar utilizando o comando:
+Antes de realizar a instalação será necessário clonar o repositório utilizando o comando:
 
 ```sh
 git clone https://github.com/tiagorconceicao/recipe-search-api
