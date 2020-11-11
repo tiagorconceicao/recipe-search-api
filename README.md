@@ -1,0 +1,125 @@
+# Recipe Search API
+
+Esta API retorna uma lista de receitas a partir de uma lista de ingredientes.
+
+Atualmente são utilizados os dados das APIs públicas [Recipe Puppy][ref1] e [GIPHY][ref2] na construção dos dados que precisam ser retornados.
+
+[ref1]: <http://www.recipepuppy.com/about/api/>
+[ref2]: <https://developers.giphy.com/docs/>
+
+## Endpoint
+
+A API possui apenas um endpoint, onde devem ser informados os parâmetros da busca (ingredientes) e deve seguir o formato:
+
+`http://{HOST}/recipes/?i={ingredient_1},{ingredient_2},{ingredient_2}`
+
+Podem ser passados até 3 parâmetros separados por vírgula. Caso a chamada exceda esse número os parâmetros excedentes são ignorados.
+
+Caso não seja informado nenhum parâmetro de busca será retornada uma mensagem de erro com `HTTP STATUS: 400`
+
+Exemplo de chamada:
+
+`http://localhost/recipes/?i=garlic,bread,butter`
+
+A resposta de cada requisição segue o seguinte formato:
+
+``` json
+{
+  "keywords": [
+    "garlic",
+    "bread",
+    "butter"
+  ],
+  "recipes": [
+    {
+      "title": "Easy No Salt Garlic Croutons",
+      "ingredients": [
+        "bread",
+        "butter",
+        "garlic",
+        "olive oil"
+      ],
+      "link": "http://www.recipezaar.com/Easy-No-Salt-Garlic-Croutons-344616",
+      "gif": "https://media.giphy.com/media/elJHvNLVP4lplJToRF/giphy.gif"
+    },
+    {
+      "title": "Simplest Garlic Bread",
+      "ingredients": [
+        "bread",
+        "butter",
+        "garlic",
+        "parsley"
+      ],
+      "link": "http://www.recipezaar.com/Simplest-Garlic-Bread-347333",
+      "gif": "https://media.giphy.com/media/Q4PcMC8apFXBm/giphy.gif"
+    }
+  ]
+}
+```
+
+Em caso de erro, será retornada uma resposta com o seguinte formato:
+
+``` json
+{
+  "status": "error",
+  "message": "Invalid search parameter"
+}
+```
+
+---
+
+## Tecnologias
+
+## Requisitos
+
+## Variáveis de ambiente
+
+Antes de executar o projeto tanto no *Docker*, como em *Ambiente de Desenvolvimento* é necessário configurar as variáveis de ambiente copiando o arquivo **.env.example** e renomeando para **.env** .
+
+É possível configurar as seguintes variáveis:
+
+- **GIPHY_API_KEY**: determina a chave da API do GIPHY. Caso não seja informada a API utilizará uma chave pública. Não é recomendado o uso da chave pública, já que frequentemente as consultas retornarão `HTTP STATUS 429`, indicando que o limite de consultas foi excedido.
+
+- **DOCKER_PORT**: determina a porta do container que ficará exposta (padrão = 80)
+
+- **SERVER_PORT**: determina a porta utilizada pelo servidor dentro do container ou em ambiente de desenvolvimento (padrão = 3333)
+
+---
+
+## Docker Container
+
+Para executar a aplicação dentro de um Docker Container basta ir na pasta raiz do repositório e digitar o comando:
+
+```sh
+docker-compose up
+```
+
+A porta do container será a indicada no **DOCKER_PORT** do arquivo **.env** .
+
+---
+
+## Ambiente de desenvolvimento
+
+Para executar a aplicação em ambiente de desenvolvimento será necessário instalar as dependências usando o comando na raiz do repositório:
+
+```sh
+yarn
+```
+
+Após finalizada a instalação é possível inicializar o servidor com o comando:
+
+```sh
+yarn dev:server
+```
+
+A porta do servidor será a indicada no **SERVER_PORT** do arquivo **.env** .
+
+### Testes
+
+É possível executar os testes com o comando:
+
+```sh
+yarn test
+```
+
+*Atenção: os testes de integração podem falhar caso as API externas não estejam disponíveis ou excedam o limite de requisições.*
