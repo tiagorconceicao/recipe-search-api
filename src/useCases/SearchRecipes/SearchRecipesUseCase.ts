@@ -1,3 +1,4 @@
+import AppError from '../../errors/AppError';
 import { IGifProvider } from '../../providers/IGifProvider';
 import { IRecipeProvider } from '../../providers/IRecipeProvider';
 import { ISearchRecipesRequestDTO } from './SearchRecupesDTO';
@@ -25,6 +26,8 @@ class SearchRecipeUseCase {
   }
 
   async execute(data: ISearchRecipesRequestDTO): Promise<IResponse> {
+    if (!data.ingredients || !data.ingredients.length)
+      throw new AppError('Invalid search parameter', 400);
     const keywords = data.ingredients.split(',', 3);
 
     const basicRecipes = await this.recipeProvider.findByIngredients(keywords);
