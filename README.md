@@ -123,6 +123,10 @@ docker-compose up --build
 
 A porta do container será a indicada no **DOCKER_PORT** do arquivo **.env** .
 
+Exemplo de chamada padrão:
+
+`http://localhost/recipes/?i=garlic,bread,butter`
+
 ### Ambiente de desenvolvimento
 
 Para executar a aplicação em ambiente de desenvolvimento será necessário instalar as dependências localmente usando o comando na pasta do repositório:
@@ -138,6 +142,10 @@ yarn dev:server
 ```
 
 A porta do servidor será a indicada no **SERVER_PORT** do arquivo **.env** .
+
+Exemplo de chamada padrão:
+
+`http://localhost:3333/recipes/?i=garlic,bread,butter`
 
 ---
 
